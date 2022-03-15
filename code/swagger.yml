@@ -1,0 +1,68 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /accounts:
+    get:
+      operationId: "accounts.read_all"
+      tags:
+        - Accounts
+      summary: Read people accounts
+      description: Read the list of accounts
+      responses:
+        200:
+          description: Successful read people list operation
+          schema:
+            type: "array"
+            items:
+              properties:
+                fname:
+                  type: "string"
+                lname:
+                  type: "string"
+                email:
+                  type: "string"
+                timestamp:
+                  type: "string"
+
+    post:
+      operationId: accounts.create
+      tags:
+        - Accoutns
+      summary: Create account and add to list
+      parameters:
+        - name: account
+          in: body
+          description: account to create
+          required: True
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+                description: first name of person
+
+              lname:
+                type: string
+                description: last name of person
+
+              email:
+                type: string
+                description: email of person
+      
+      responses:
+        201:
+          description: successfully created account
+
+
+ /accounts/{email}:
